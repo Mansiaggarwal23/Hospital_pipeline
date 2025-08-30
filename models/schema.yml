@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_all_hospital_standardCharges
+    columns:
+      - name: description
+        tests:
+          - not_null
+
+      - name: standard_charge_gross
+        tests:
+          - not_null
+
+      - name: setting
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['inpatient', 'outpatient', 'both', '-1']
+
+      - name: billing_class
+        tests:
+          - accepted_values:
+              values: ['facility', 'professional', 'both', '-1']
+
+      - name: drug_type_of_measurement
+        tests:
+          - accepted_values:
+              values: ['GR', 'ME', 'ML', 'UN', 'F2', 'EA', 'GM']
+
+  - name: stg_hospitaldata
+    columns:
+      - name: hospital_name
+        tests:
+          - not_null
+
+      - name: hospital_location
+        tests:
+          - not_null
+
+      - name: hospital_address
+        tests:
+          - not_null
